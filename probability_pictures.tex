@@ -67,7 +67,10 @@
 % 4. Не сокращайте .1 вместо 0.1
 % 5. Повторяющееся значение повторяйте, а не говорите "то же"
 
-\usepackage{tikz}
+\usepackage{tikz, pgfplots} % язык для рисования графики из latex'a
+\usetikzlibrary{trees} % прибамбас в нем для рисовки деревьев
+\usetikzlibrary{arrows} % прибамбас в нем для рисовки стрелочек подлиннее
+\usepackage{tikz-qtree} % прибамбас в нем для рисовки деревьев
 \usetikzlibrary{automata, arrows, positioning, calc}
 
 
@@ -80,9 +83,14 @@
 % download "Linux Libertine" fonts:
 % http://www.linuxlibertine.org/index.php?id=91&L=1
 \setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+
+\setmonofont{Liberation Mono} % minted использует моноширинный шрифт, нужен моноширинный шрифт с кириллицей
 % why do we need \newfontfamily:
 % http://tex.stackexchange.com/questions/91507/
 \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+\newfontfamily{\cyrillicfont}{Linux Libertine O}
+\newfontfamily{\cyrillicfontsf}{Linux Libertine O}
+
 
 \AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
 % \setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
@@ -131,6 +139,41 @@
 \end{tikzpicture}
 \end{minted}
 
+
+\newpage
+
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+  thick,main node/.style={circle,fill=blue!20,draw,font=\sffamily\Large\bfseries}]
+
+  \node[main node] (S) {S};
+  \node[main node] (6) [below of=S] {6};
+  \node[main node] (66) [below of=6] {F};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (S) edge [loop right] node {«не 6»} (S)
+        edge [bend right] node[left] {«6»} (6)
+    (6) edge [bend right] node[right] {«не 6»} (66)
+        edge [above] node[left] {«6»} (66);
+\end{tikzpicture}
+\end{center}
+   
+\begin{minted}[linenos]{latex}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+  thick,main node/.style={circle,fill=blue!20,draw,
+  font=\sffamily\Large\bfseries}]
+
+\node[main node] (S) {S};
+\node[main node] (6) [below of=S] {6};
+\node[main node] (66) [below of=6] {F};
+
+\path[every node/.style={font=\sffamily\small}]
+  (S) edge [loop right] node {«не 6»} (S)
+      edge [bend right] node[left] {«6»} (6)
+  (6) edge [bend right] node[right] {«не 6»} (66)
+      edge [above] node[left] {«6»} (66);
+\end{tikzpicture}      
+\end{minted}
 
 
 \end{document}
