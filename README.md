@@ -10,8 +10,8 @@
 
 ### Вкусности
 
-* Картинки на [tikz-gallery]();
-* Изначальный [студенческий проект]().
+* Картинки на [tikz-gallery](https://texample.net/tikz/examples/area/mathematics/);
+* Изначальный [студенческий проект](https://github.com/Anna-Pon/Tikz-Illustrations).
 
 ### Лицензия
 

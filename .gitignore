@@ -1,3 +1,6 @@
+# more
+*.pgf-plot.*
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
